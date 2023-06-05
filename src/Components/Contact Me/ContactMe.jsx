@@ -1,10 +1,31 @@
 import { useForm } from "react-hook-form";
 
 
-const Contact = () => {
+export const Contact = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    function Submit(e) {
+        const formEle = document.querySelector("form");
+        const formDatab = new FormData(formEle);
+        e.preventDefault();
+        console.log("Submitted");
+        console.log(formDatab);
+
+        fetch(
+          "https://script.google.com/macros/s/AKfycbzFqVVNUvY0x9r25cH1p3gI1OSZ91tIjrDqApj2sqdM3WaBALJXCjHCoaERFRw-LHTi/exec",
+          {
+            method: "POST",
+            body: formDatab
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
 
     return(
         <section className="">
@@ -22,27 +43,23 @@ const Contact = () => {
                     </div>
 
 
-                <div className="justify-center items-center">
+                <div className="justify-center ">
                     <h2 className="text-white text-3xl">Contact Me</h2>
+                    <div className="flex flex-col my-4">
+                      <form className="flex flex-col space-y-3 text-black" onSubmit={(e) => Submit(e)}>
+                         <input className="h-10 rounded-3xl p-4" placeholder="Your Name" name="Name" type="text" />
+                          <input className="h-10 rounded-3xl p-4" placeholder="Your Email" name="Email" type="text" />
+                             <input className="h-32 rounded-3xl p-4" placeholder="Your Message" name="Message" type="text" />
+                          <input className="bg-blue-400 rounded-2xl h-10" name="Name" type="submit" />
+                     </form>
+                     </div>
+                 </div>
 
-                <form className="text-black my-10" onSubmit={handleSubmit(onSubmit)}>
-                    {/* register your input into the hook by invoking the "register" function */}
-                    <input className="my-5" defaultValue="Name" {...register("example")} />
-                    
-                    {/* include validation with required or other standard HTML validation rules */}
-                    <input className="my-5" {...register("exampleRequired", { required: true })} />
-                    {/* errors will return when field validation fails  */}
-                    {errors.exampleRequired && <span>This field is required</span>}
-                    
-                    <input type="submit" />
-                    </form>
                     </div>             
                 
                 
             </div>
-            </div>
+
         </section>
     )
 }
-
-export default Contact;
