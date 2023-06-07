@@ -13,9 +13,7 @@ function App() {
       <AboutMe/>
       <WorkExperience/>
       <Contact/>
-      <CardSection/>
-      
-      
+      <CardSection/> 
     </div>
   );
 }
