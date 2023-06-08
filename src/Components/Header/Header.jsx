@@ -1,23 +1,38 @@
+import { motion } from "framer-motion";
+import anime from "animejs/lib/anime.es.js";
 
 export const Header = () => {
-    return(
-        <header className="">
-           <div className="flex-row-reverse md:flex justify-center items-center m-6 p-6">
-            <div className="w-[40rem] h-auto mx-7">
-                <h1 className="drop-shadow-2xl text-rose-300 lg:text-8xl md:text-4xl sm:text-2xl text-2xl">
-                Transforming ideas into digital reality.
-                </h1>
-                <button className="drop-shadow-2xl rounded-full text-white p-3 bg-violet-400 hover:bg-violet-300 active:bg-violet-300 my-8">
-                    Click to Connect
-                </button>
-            </div>
-            <div className="lg:mx-8 ">
-                <img className="drop-shadow-2xl" src="https://i.ibb.co/NSd2cr2/27470334-7309681-removebg-preview.png"></img>
-            </div>
-            </div>
-        </header>
-    )
-}
+  return (
+    <header className="">
+      <div className="flex-row-reverse md:flex justify-center items-center m-6 p-6">
+        <div className="w-[40rem] h-auto mx-7">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              ease: "linear",
+              duration: 2,
+              x: { duration: 1 },
+            }}
+          >
+            <h1 className="drop-shadow-2xl text-rose-300 lg:text-8xl md:text-4xl sm:text-2xl text-2xl">
+              Transforming ideas into digital reality.
+            </h1>
+          </motion.div>
+
+          <button className="drop-shadow-2xl rounded-full text-white p-3 bg-violet-400 hover:bg-violet-300 active:bg-violet-300 my-8">
+            Click to Connect
+          </button>
+        </div>
+        <div className="lg:mx-8 ">
+          <img
+            className="drop-shadow-2xl"
+            src="https://i.ibb.co/NSd2cr2/27470334-7309681-removebg-preview.png"
+          ></img>
+        </div>
+      </div>
+    </header>
+  );
+};
 
 // export const Header = () => {
 //     return (
@@ -38,4 +53,3 @@ export const Header = () => {
 //       </header>
 //     );
 //   };
-  
